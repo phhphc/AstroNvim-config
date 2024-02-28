@@ -15,6 +15,9 @@ return {
       lsp_implementations = {
         fname_width = 80,
       },
+      lsp_definitions = {
+        fname_width = 80,
+      },
     }
   end,
 }

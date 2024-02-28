@@ -14,9 +14,6 @@ return {
   { import = "astrocommunity.motion.nvim-surround" },
   { import = "astrocommunity.motion.marks-nvim" },
 
-  -- debug
-  -- { import = "astrocommunity/debugging/nvim-bqf" }, -- plugin make quickfix not follow LSP symbols
-
   -- git
   { import = "astrocommunity.git.git-blame-nvim" },
 
