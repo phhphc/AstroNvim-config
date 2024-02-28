@@ -6,6 +6,34 @@
 return {
   -- first key is the mode
   n = {
+    ["]q"] = { "<cmd>cnext<cr>", desc = "Next quickfix" },
+    ["[q"] = { "<cmd>cprev<cr>", desc = "Previous quickfix" },
+
+    ["<leader>e"] = {
+      function()
+        local reveal_file = vim.fn.expand "%:p"
+        local curr_dir = vim.fn.getcwd()
+        local file_in_dir = reveal_file:sub(1, #curr_dir) == curr_dir
+        local opts = {
+          source = "last",
+          toggle = true,
+          reveal = file_in_dir,
+        }
+        require("neo-tree.command").execute(opts)
+      end,
+      desc = "NeoTree Focus",
+    },
+
+    ["<leader>o"] = {
+      function()
+        require("telescope.builtin").buffers {
+          sort_lastused = true,
+          initial_mode = "normal",
+        }
+      end,
+      desc = "Recent Buffer",
+    },
+
     -- second key is the lefthand side of the map
 
     -- navigate buffer tabs with `H` and `L`
@@ -36,5 +64,6 @@ return {
   t = {
     -- setting a mapping to false will disable it
     -- ["<esc>"] = false,
+    ["<F8>"] = { "<C-\\><C-n>" },
   },
 }
