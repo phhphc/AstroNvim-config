@@ -1,3 +1,17 @@
+local augroup = vim.api.nvim_create_augroup
+local autocmd = vim.api.nvim_create_autocmd
+
+autocmd({ "FocusLost", "BufLeave" }, {
+  desc = "Auto save buffer",
+  group = augroup("user-auto-save", { clear = true }),
+  callback = function(args)
+    local buftype = vim.api.nvim_get_option_value("buftype", { buf = args.buf })
+    if buftype == "" then
+      if vim.bo.modified then vim.cmd "write" end
+    end
+  end,
+})
+
 return {
   -- Configure AstroNvim updates
   updater = {
@@ -32,6 +46,7 @@ return {
         enabled = true,
         allow_filetypes = {
           "go",
+          "lua",
         },
       },
     },

@@ -10,13 +10,16 @@ return {
 
     opts.pickers = {
       lsp_references = {
-        fname_width = 80,
+        fname_width = 100,
+        initial_mode = "normal",
       },
       lsp_implementations = {
-        fname_width = 80,
+        fname_width = 100,
+        initial_mode = "normal",
       },
       lsp_definitions = {
-        fname_width = 80,
+        fname_width = 100,
+        initial_mode = "normal",
       },
     }
   end,

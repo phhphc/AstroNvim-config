@@ -13,6 +13,7 @@ return {
   -- motion
   { import = "astrocommunity.motion.nvim-surround" },
   { import = "astrocommunity.motion.marks-nvim" },
+  { import = "astrocommunity.motion.hop-nvim" },
 
   -- git
   { import = "astrocommunity.git.git-blame-nvim" },
