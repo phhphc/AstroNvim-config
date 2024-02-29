@@ -3,11 +3,12 @@ local autocmd = vim.api.nvim_create_autocmd
 
 autocmd({ "FocusLost", "BufLeave" }, {
   desc = "Auto save buffer",
-  group = augroup("user-auto-save", { clear = true }),
+  group = augroup("autosave", { clear = true }),
   callback = function(args)
-    local buftype = vim.api.nvim_get_option_value("buftype", { buf = args.buf })
-    if buftype == "" then
-      if vim.bo.modified then vim.cmd "write" end
+    if vim.bo.modified then
+      local filetype = vim.api.nvim_get_option_value("filetype", { buf = args.buf })
+      local buftype = vim.api.nvim_get_option_value("buftype", { buf = args.buf })
+      if buftype == "" and filetype and filetype ~= "" then vim.cmd "write" end
     end
   end,
 })
