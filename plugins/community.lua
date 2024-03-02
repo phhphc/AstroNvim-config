@@ -17,6 +17,7 @@ return {
 
   -- git
   { import = "astrocommunity.git.git-blame-nvim" },
+  { import = "astrocommunity.git.diffview-nvim" },
 
   -- support
   { import = "astrocommunity.editing-support.rainbow-delimiters-nvim" },

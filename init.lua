@@ -1,17 +1,17 @@
-local augroup = vim.api.nvim_create_augroup
-local autocmd = vim.api.nvim_create_autocmd
-
-autocmd({ "FocusLost", "BufLeave" }, {
-  desc = "Auto save buffer",
-  group = augroup("autosave", { clear = true }),
-  callback = function(args)
-    if vim.bo.modified then
-      local filetype = vim.api.nvim_get_option_value("filetype", { buf = args.buf })
-      local buftype = vim.api.nvim_get_option_value("buftype", { buf = args.buf })
-      if buftype == "" and filetype and filetype ~= "" then vim.cmd "write" end
-    end
-  end,
-})
+-- local augroup = vim.api.nvim_create_augroup
+-- local autocmd = vim.api.nvim_create_autocmd
+--
+-- autocmd({ "FocusLost", "BufLeave" }, {
+--   desc = "Auto save buffer",
+--   group = augroup("autosave", { clear = true }),
+--   callback = function(args)
+--     if vim.bo.modified then
+--       local filetype = vim.api.nvim_get_option_value("filetype", { buf = args.buf })
+--       local buftype = vim.api.nvim_get_option_value("buftype", { buf = args.buf })
+--       if buftype == "" and filetype and filetype ~= "" then vim.cmd "write" end
+--     end
+--   end,
+-- })
 
 return {
   -- Configure AstroNvim updates
@@ -75,6 +75,7 @@ return {
   -- augroups/autocommands and custom filetypes also this just pure lua so
   -- anything that doesn't fit in the normal config locations above can go here
   polish = function()
+    require("luasnip/loaders/from_vscode").load { paths = { "./lua/user/snippets" } }
     -- Set up custom filetypes
     -- vim.filetype.add {
     --   extension = {
@@ -88,4 +89,10 @@ return {
     --   },
     -- }
   end,
+
+  plugins = {
+    init = {
+      ["L3MON4D3/LuaSnip"] = { module = "" },
+    },
+  },
 }

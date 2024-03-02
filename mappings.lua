@@ -40,9 +40,7 @@ return {
       function()
         local bufs = vim.fn.getbufinfo { buflisted = true }
         require("astronvim.utils.buffer").close(0)
-        if
-          require("astronvim.utils").is_available "alpha-nvim" and not bufs[2]
-        then
+        if require("astronvim.utils").is_available "alpha-nvim" and not bufs[2] then
           require("alpha").start(true)
         end
       end,
@@ -75,9 +73,21 @@ return {
     ["<leader>b"] = { name = "Buffers" },
     -- quick save
     -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
+
+    -- git section
+    ["<leader>gd"] = false,
+    ["<leader>gdo"] = { "<cmd>DiffviewOpen<cr>", desc = "Diffview Open" },
+    ["<leader>gdc"] = { "<cmd>DiffviewClose<cr>", desc = "Diffview Close" },
+    ["<leader>gdr"] = { "<cmd>DiffviewRefresh<cr>", desc = "Diffview Refresh" },
+    ["<leader>gdh"] = { "<cmd>DiffviewFileHistory<cr>", desc = "Diffview File History" },
+    ["<leader>gdd"] = { ":DiffviewOpen<space>", desc = "Diffview Open (with config)" },
+    ["<leader>gdf"] = {
+      ":DiffviewFileHistory<space>",
+      desc = "Diffview File History (with config)",
+    },
   },
   i = {
-    ["<C-R><C-R>"] = {"<C-R>\""}
+    ["<C-R><C-R>"] = { '<C-R>"' },
   },
   t = {
     -- setting a mapping to false will disable it
